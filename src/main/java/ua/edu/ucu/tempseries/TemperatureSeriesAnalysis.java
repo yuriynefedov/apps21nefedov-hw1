@@ -84,8 +84,8 @@ public class TemperatureSeriesAnalysis {
         double result = temperatureSeries[0];
         for (double value: temperatureSeries) {
             double newMinDiff = Math.abs(value);
-            if ((newMinDiff < minDiff) ||
-                    ((newMinDiff == minDiff) && (value > result))) {
+            if ((newMinDiff < minDiff)
+                    || ((newMinDiff == minDiff) && (value > result))) {
                 result = value;
             }
         }
@@ -98,7 +98,8 @@ public class TemperatureSeriesAnalysis {
         double result = temperatureSeries[0];
         for (double value: temperatureSeries) {
             double newMinDiff = Math.abs(value - tempValue);
-            if ((newMinDiff < minDiff) || ((newMinDiff == minDiff) && (value > result))) {
+            if ((newMinDiff < minDiff)
+                    || ((newMinDiff == minDiff) && (value > result))) {
                 result = value;
             }
         }
