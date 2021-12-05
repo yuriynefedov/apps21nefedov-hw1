@@ -13,4 +13,20 @@ public class TempSummaryStatistics {
         this.minTemp = minTemp;
         this.maxTemp = maxTemp;
     }
+
+    public double getAvgTemp() {
+        return this.avgTemp;
+    }
+
+    public double getDevTemp() {
+        return this.devTemp;
+    }
+
+    public double getMinTemp() {
+        return this.minTemp;
+    }
+
+    public double getMaxTemp() {
+        return this.maxTemp;
+    }
 }
