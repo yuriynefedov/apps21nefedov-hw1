@@ -107,4 +107,56 @@ public class TemperatureSeriesAnalysisTest {
         
         assertEquals(expResult, actualResult, 0.00001);        
     }
+
+    @Test
+    public void testDeviation() {
+        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expResult = 3.7416573867739413;
+
+        double actualResult = seriesAnalysis.deviation();
+
+        assertEquals(expResult, actualResult, 0.00001);
+    }
+
+    @Test
+    public void testMin() {
+        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expResult = -5.0;
+
+        double actualResult = seriesAnalysis.min();
+
+        assertEquals(expResult, actualResult, 0.00001);
+    }
+
+    @Test
+    public void testMax() {
+        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expResult = 5.0;
+
+        double actualResult = seriesAnalysis.max();
+
+        assertEquals(expResult, actualResult, 0.00001);
+    }
+
+    @Test
+    public void testStatistics() {
+        // setup input data and expected result
+        double[] temperatureSeries = {-1.0, 2.5, 14.0, 21.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        TempSummaryStatistics expResult = new TempSummaryStatistics(9.125,
+                8.820253681159063, -1.0, 21.0);
+
+        // call tested method
+        TempSummaryStatistics actualResult = seriesAnalysis.summaryStatistics();
+
+        // compare expected result with actual result
+        assertEquals(expResult.getAvgTemp(), actualResult.getAvgTemp(), 0.0001);
+        assertEquals(expResult.getDevTemp(), actualResult.getDevTemp(), 0.0001);
+        assertEquals(expResult.getMaxTemp(), actualResult.getMaxTemp(), 0.0001);
+        assertEquals(expResult.getMinTemp(), actualResult.getMinTemp(), 0.0001);
+
+    }
 }
