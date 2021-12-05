@@ -157,6 +157,45 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult.getDevTemp(), actualResult.getDevTemp(), 0.0001);
         assertEquals(expResult.getMaxTemp(), actualResult.getMaxTemp(), 0.0001);
         assertEquals(expResult.getMinTemp(), actualResult.getMinTemp(), 0.0001);
+    }
 
+    @Test
+    public void testSum() {
+        double[] temperatureSeries = {-1.0, 2.5, -12.0, 21.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expectedResult = 10.5;
+        assertEquals(expectedResult, seriesAnalysis.sum(), 0.0001);
+    }
+
+    @Test
+    public void testFindTempClosestToZero() {
+        double[] temperatureSeries = {-1.0, 1.0, -12.0, 21.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expectedResult = 1.0;
+        assertEquals(expectedResult, seriesAnalysis.findTempClosestToZero(), 0.0001);
+    }
+
+    @Test
+    public void testFindTempClosestToValue() {
+        double[] temperatureSeries = {-1.0, 1.0, -12.0, 21.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expectedResult = 21.0;
+        assertEquals(expectedResult, seriesAnalysis.findTempClosestToValue(20.0), 0.0001);
+    }
+
+    @Test
+    public void testFindTempsLessThan() {
+        double[] temperatureSeries = {-1.0, 1.0, -12.0, 21.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double[] expectedResult = {-1.0};
+        assertEquals(expectedResult[0], seriesAnalysis.findTempsLessThen(0.0)[0], 0.0001);
+    }
+
+    @Test
+    public void testFindTempsGreaterThan() {
+        double[] temperatureSeries = {-1.0, 1.0, -12.0, 21.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double[] expectedResult = {21.0};
+        assertEquals(expectedResult[0], seriesAnalysis.findTempsGreaterThen(20.0)[0], 0.0001);
     }
 }
