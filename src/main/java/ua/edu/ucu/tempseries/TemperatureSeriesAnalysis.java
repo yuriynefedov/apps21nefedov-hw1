@@ -5,20 +5,21 @@ import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
 
-    double[] temperatureSeries;
+    static final double minTemperature = -273.0;
+    private double[] temperatureSeries;
 
-    public TemperatureSeriesAnalysis() {}
+    public TemperatureSeriesAnalysis() { }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        if (!check_validity(temperatureSeries)) {
+        if (!checkValidity(temperatureSeries)) {
             throw new InputMismatchException();
         }
         this.temperatureSeries = temperatureSeries;
     }
 
-    private boolean check_validity(double[] temperatureSeries) {
-        for (double value : temperatureSeries) {
-            if (value < -273.0) {
+    private boolean checkValidity(double[] series) {
+        for (double value : series) {
+            if (value < minTemperature) {
                 return false;
             }
         }
@@ -79,11 +80,12 @@ public class TemperatureSeriesAnalysis {
 
     public double findTempClosestToZero() {
         throwExceptionIfRowEmpty();
-        double min_diff = Math.abs(temperatureSeries[0]);
+        double minDiff = Math.abs(temperatureSeries[0]);
         double result = temperatureSeries[0];
         for (double value: temperatureSeries) {
-            double new_min_diff = Math.abs(value);
-            if ((new_min_diff < min_diff) || ((new_min_diff == min_diff) && (value > result))) {
+            double newMinDiff = Math.abs(value);
+            if ((newMinDiff < minDiff) ||
+                    ((newMinDiff == minDiff) && (value > result))) {
                 result = value;
             }
         }
@@ -92,11 +94,11 @@ public class TemperatureSeriesAnalysis {
 
     public double findTempClosestToValue(double tempValue) {
         throwExceptionIfRowEmpty();
-        double min_diff = Math.abs(temperatureSeries[0] - tempValue);
+        double minDiff = Math.abs(temperatureSeries[0] - tempValue);
         double result = temperatureSeries[0];
         for (double value: temperatureSeries) {
-            double new_min_diff = Math.abs(value - tempValue);
-            if ((new_min_diff < min_diff) || ((new_min_diff == min_diff) && (value > result))) {
+            double newMinDiff = Math.abs(value - tempValue);
+            if ((newMinDiff < minDiff) || ((newMinDiff == minDiff) && (value > result))) {
                 result = value;
             }
         }
