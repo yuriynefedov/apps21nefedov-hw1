@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
 
-    static final double minTemperature = -273.0;
+    static final double MIN_TEMPERATURE = -273.0;
     private double[] temperatureSeries;
 
     public TemperatureSeriesAnalysis() { }
@@ -19,7 +19,7 @@ public class TemperatureSeriesAnalysis {
 
     private boolean checkValidity(double[] series) {
         for (double value : series) {
-            if (value < minTemperature) {
+            if (value < MIN_TEMPERATURE) {
                 return false;
             }
         }
@@ -112,10 +112,10 @@ public class TemperatureSeriesAnalysis {
         for (double value: temperatureSeries) {
             if (value < tempValue) {
                 currentLength += 1;
-                double[] new_result = new double[currentLength];
-                System.arraycopy(result, 0, new_result, 0, result.length);
-                new_result[currentLength-1] = value;
-                result = new_result;
+                double[] newResult = new double[currentLength];
+                System.arraycopy(result, 0, newResult, 0, result.length);
+                newResult[currentLength-1] = value;
+                result = newResult;
             }
         }
         return result;
@@ -127,10 +127,10 @@ public class TemperatureSeriesAnalysis {
         for (double value: temperatureSeries) {
             if (value > tempValue) {
                 currentLength += 1;
-                double[] new_result = new double[currentLength];
-                System.arraycopy(result, 0, new_result, 0, result.length);
-                new_result[currentLength-1] = value;
-                result = new_result;
+                double[] newResult = new double[currentLength];
+                System.arraycopy(result, 0, newResult, 0, result.length);
+                newResult[currentLength-1] = value;
+                result = newResult;
             }
         }
         return result;
@@ -170,6 +170,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     private void doubleUpStorage() {
-        temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length * 2);
+        temperatureSeries = Arrays.copyOf(temperatureSeries,
+                temperatureSeries.length * 2);
     }
 }
