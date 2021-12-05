@@ -198,4 +198,12 @@ public class TemperatureSeriesAnalysisTest {
         double[] expectedResult = {21.0};
         assertEquals(expectedResult[0], seriesAnalysis.findTempsGreaterThen(20.0)[0], 0.0001);
     }
+
+    @Test
+    public void testAddTemps() {
+        double[] temperatureSeries = {-1.0, 1.0, -12.0, 21.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        int expectedResult = 8;
+        assertEquals(expectedResult, seriesAnalysis.addTemps(1.0, 20.0, 12.0), 0.0001);
+    }
 }

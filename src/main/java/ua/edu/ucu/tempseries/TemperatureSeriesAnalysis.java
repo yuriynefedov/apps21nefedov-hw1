@@ -172,5 +172,8 @@ public class TemperatureSeriesAnalysis {
     private void doubleUpStorage() {
         temperatureSeries = Arrays.copyOf(temperatureSeries,
                 temperatureSeries.length * 2);
+        for (int i = temperatureSeries.length / 2; i < temperatureSeries.length; i++) {
+            temperatureSeries[i] = Double.MAX_VALUE;
+        }
     }
 }
